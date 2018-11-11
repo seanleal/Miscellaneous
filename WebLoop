@@ -1,0 +1,22 @@
+import sys
+import time
+import subprocess
+
+page = sys.argv[1]
+delaystr = sys.argv[2]
+delay = float(delaystr)
+
+app = "chromium-browser"
+
+while True:
+
+	p = subprocess.Popen([app, page])
+
+	time.sleep(delay)
+
+	p.terminate()
+
+	# Wait for process to terminate
+	returncode = p.wait()
+
+	print "Returncode of subprocess: %s" % returncode
